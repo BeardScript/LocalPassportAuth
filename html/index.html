@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <title> Home </title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div class="message-box">
+    <h1 id="welcome-message"></h1>
+    <a href="/private">Go to private area</a>
+  </div>
+
+  <script>
+    const req = new XMLHttpRequest();
+    req.onreadystatechange = function () {
+      if (req.readyState == 4 && req.status == 200) {
+        requestAnimationFrame(() => {
+          const user = JSON.parse(req.response).user;
+          document.getElementById("welcome-message").innerText = `Welcome ${user.username}!!`;
+        });
+      }
+    }
+    req.open("GET", "http://localhost:3000/user", true); // false for synchronous request
+    req.send();
+  </script>
+</body>
+
+</html>
