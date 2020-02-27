@@ -15,13 +15,11 @@
     const req = new XMLHttpRequest();
     req.onreadystatechange = function () {
       if (req.readyState == 4 && req.status == 200) {
-        requestAnimationFrame(() => {
           const user = JSON.parse(req.response).user;
           document.getElementById("welcome-message").innerText = `Welcome ${user.username}!!`;
-        });
       }
     }
-    req.open("GET", "http://localhost:3000/user", true); // false for synchronous request
+    req.open("GET", "http://localhost:3000/user", true);
     req.send();
   </script>
 </body>

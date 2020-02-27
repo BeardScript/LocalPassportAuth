@@ -39,7 +39,7 @@ const UserDetail = new Schema({
 });
 
 UserDetail.plugin(passportLocalMongoose);
-const UserDetails = mongoose.model('userInfo3', UserDetail, 'userInfo3');
+const UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
 
 /* PASSPORT LOCAL AUTHENTICATION */
 
@@ -50,7 +50,7 @@ passport.deserializeUser(UserDetails.deserializeUser());
 
 /* ROUTES */
 
-connectEnsureLogin = require('connect-ensure-login');
+const connectEnsureLogin = require('connect-ensure-login');
 
 app.post('/login', (req, res, next) => {
   passport.authenticate('local',
